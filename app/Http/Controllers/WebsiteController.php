@@ -83,7 +83,7 @@ class WebsiteController extends Controller
         $inquiry->save();
 
         // send mail
-        // Mail::send(new ContactForm($inquiry));
+        Mail::send(new ContactForm($inquiry));
 
         Session::flash('success-message', 'Thanks for contacting us...');
         return redirect()->route('welcome');

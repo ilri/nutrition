@@ -139,11 +139,11 @@ class OrderController extends Controller
         $order->save();
 
         // send mail
-        // if ($order->order_status_id === 4) {
-        //     Mail::send(new OrderCompleted($order)); 
-        // }else{
-        //     Mail::send(new OrderStatusChange($order));
-        // }
+        if ($order->order_status_id === 4) {
+            Mail::send(new OrderCompleted($order));
+        }else{
+            Mail::send(new OrderStatusChange($order));
+        }
         $order_dates = OrderDate::where('order_id', $id)->get();
         if($order->order_status_id = 4){
             foreach($order_dates as $order_date){
@@ -178,8 +178,9 @@ class OrderController extends Controller
             // send mail
             // Mail::send(new OrderRejected($order));
         //}
+
         // send mail
-        // Mail::send(new OrderRejected($order));
+        Mail::send(new OrderRejected($order));
 
         // Session::flash('error', 'Order has been rejected!!!');
         return redirect()->route('all-orders.index');
@@ -248,7 +249,7 @@ class OrderController extends Controller
         $order_product->save();
 
         // send mail
-        // Mail::send(new ResultsUploaded($order));
+        Mail::send(new ResultsUploaded($order));
 
         Session::flash('success-message', 'Results uploaded successfully...');
         return back();
@@ -272,7 +273,7 @@ class OrderController extends Controller
         $order_product->save();
 
         // send mail
-        // Mail::send(new RawdataUploaded($order));
+        Mail::send(new RawdataUploaded($order));
 
         Session::flash('success-message', 'Raw Data uploaded successfully...');
         return back();
@@ -373,7 +374,7 @@ class OrderController extends Controller
             $order->save();
 
             // send mail
-            // Mail::send(new BudgetUploaded($order));
+            Mail::send(new BudgetUploaded($order));
 
             $order_dates = OrderDate::where('order_id', $id)->get();
             foreach($order_dates as $order_date){
@@ -406,7 +407,7 @@ class OrderController extends Controller
         $order->save();
 
         // send mail
-        // Mail::send(new InvoiceUploaded($order));
+        Mail::send(new InvoiceUploaded($order));
 
         $order_dates = OrderDate::where('order_id', $id)->get();
         foreach($order_dates as $order_date){
@@ -435,7 +436,7 @@ class OrderController extends Controller
         $order->save();
 
         // send mail
-        // Mail::send(new PaymentUploaded($order));
+        Mail::send(new PaymentUploaded($order));
 
         $order_dates = OrderDate::where('order_id', $id)->get();
         foreach($order_dates as $order_date){
@@ -464,7 +465,7 @@ class OrderController extends Controller
         $order->save();
 
         // send mail
-        // Mail::send(new PaymentUploaded($order));
+        Mail::send(new PaymentUploaded($order));
 
         $order_dates = OrderDate::where('order_id', $id)->get();
         foreach($order_dates as $order_date){
@@ -493,7 +494,7 @@ class OrderController extends Controller
         $order->save();
 
         // send mail
-        // Mail::send(new ServiceUploaded($order));
+        Mail::send(new ServiceUploaded($order));
 
         $order_dates = OrderDate::where('order_id', $id)->get();
         foreach($order_dates as $order_date){
@@ -522,7 +523,7 @@ class OrderController extends Controller
         $order->save();
 
         // send mail
-        // Mail::send(new SignedServiceUploaded($order));
+        Mail::send(new SignedServiceUploaded($order));
 
         $order_dates = OrderDate::where('order_id', $id)->get();
         foreach($order_dates as $order_date){

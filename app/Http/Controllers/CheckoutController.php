@@ -34,7 +34,7 @@ class CheckoutController extends Controller
         $order = $this->addToOrdersTables($request, null);
 
         // send mail
-        // Mail::send(new OrderPlaced($order));
+        Mail::send(new OrderPlaced($order));
 
         Cart::destroy();
 
